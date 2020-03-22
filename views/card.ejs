@@ -8,10 +8,62 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>Card Details</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body>
-    <h1>Hello, world!</h1>
+    <div class="container">
+        <form action="/card" method="POST">
+            <div class="form-group">
+                <input type="text" name="id" id="id" value="<%=pid%>">
+                <input type="text" name="bid" id="bid" value="<%=bid%>">
+                <input type="text" name="lid" id="lid" value="<%=lid%>">
+                <input type="text" name="cid" id="cid" value="<%=card._id%>">
+              <label for="title">Card Title</label>
+              <input type="text" name="title" class="form-control" id="title" value="<%=card.title%>">
+             
+            </div>
+            <div class="form-group">
+              <label for="Description">Description</label>
+              <!-- <input type="password" class="form-control" id="Description"> -->
+             <input type="text" name="description" id="description" class="form-control" value="<%=card.description%>">
+            </div>
+          
+            <button type="submit" class="btn btn-primary">Save</button>
+          </form>
+
+
+          <h2>Comments</h2>
+         
+          <form action="/cardComment" method="POST" class="form-horizontal">
+            <input type="text" name="id"  value="<%=pid%>">
+                <input type="text" name="bid"  value="<%=bid%>">
+                <input type="text" name="lid"  value="<%=lid%>">
+            <input type="text" name="cid" value="<%=card._id%>">
+            <div class="form-group">
+                
+                <label for="comment" class="control-label col-sm-2"><i class="fa fa-user" aria-hidden="true"></i></label>
+                <input  class="form-control col-sm-10" type="text" name="comment" id="comment">
+                <button type="submit" class="btn btn-primary mt-2">Save</button>
+            </div>
+          </form>
+          
+
+          <div id="comments">
+              <%for(i=card.comments.length-1;i>=0;i--){%>
+              <div class="row mt-4">
+            <i class="fa fa-user col-1 mt-3" style="font-size: 65px;" aria-hidden="true"></i>
+            <div class="card col-11">
+                  <div class="card-body">
+                  <h5 class="card-title"><%= card.comments[i].creator%></h5>
+                  <p class="card-text"><%=card.comments[i].desc%></p>
+                  <p class="card-text"><small class="text-muted"><%=card.comments[i].date%></small></p>
+                </div>
+              </div>
+            </div>
+        <%}%>
+          </div>
+    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
