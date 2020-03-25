@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const List = require("./list")
-let privateBoardSchema = new mongoose.Schema({
+let boardSchema = new mongoose.Schema({
     creator:{
         type:String,      
     },
@@ -22,5 +22,5 @@ let privateBoardSchema = new mongoose.Schema({
     }]
 })
 
-module.exports= mongoose.model("PrivateBoard",privateBoardSchema);
+module.exports= mongoose.model("Board",boardSchema);
 

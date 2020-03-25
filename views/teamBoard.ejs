@@ -44,8 +44,8 @@
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
-               <% for(i=person.boards.length-1;i>=0;i--){%>
-                <a class="dropdown-item" href="/b/<%=person._id%>/<%=person.boards[i]._id%>"><%=person.boards[i].name%></a>
+               <% for(i=team.boards.length-1;i>=0;i--){%>
+                <a class="dropdown-item" href="/tb/<%= person._id%>/<%=team._id%>/<%=team.boards[i]._id%>">nj<%=team.boards[i].name%></a>
                
                 <div class="dropdown-divider"></div>
                 <%}%>
@@ -72,12 +72,12 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                       <span class="dropdown-item" >Create</span>
                       <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="/createBoard/<%=person._id%>">
+                      <a class="dropdown-item" href="/createBoard/<%=team._id%>">
                         <i class="fa fa-sticky-note-o" aria-hidden="true"></i> Create Board
                       <p>A board is made up of cards ordered o lists. Use it to manage projects, track <br/>information, or organize anything.</p>
                       </a>
                       <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="/createTeam/<%=person._id%>"><i class="fa fa-users" aria-hidden="true"></i> Create Team
+                      <a class="dropdown-item" href="/createTeam/<%=team._id%>"><i class="fa fa-users" aria-hidden="true"></i> Create Team
                         <p>A team is a group of boards and people. Use it to organize your company, <br/>side hustle, family, or friends.</p>
                       </a>
                     </div>
@@ -163,14 +163,15 @@
       <a class="dropdown-item" href="#">Separated link</a>
     </div>
   </div>
-  <a href="/boardDetails/<%=person._id%>/<%=board._id%>" style="color: rgb(185, 184, 184);" class="btn btn-outline-secondary"  title="<%=board.description%>">About this board</a>
+  <a href="/teamboardDetails/<%=person._id%>/<%=team._id%>/<%=board._id%>" style="color: rgb(185, 184, 184);" class="btn btn-outline-secondary"  title="<%=board.description%>">About this board</a>
   <div style="display: inline;" class="input-group-prepend">
     <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Change Background</button>
     <div class="dropdown-menu">
 
-      <form action="/background" method="POST" class="form-group">
+      <form action="/teamBackground" method="POST" class="form-group">
+        <input type="text" name="id" readonly value="<%=person._id%>">
         <input type="text" readonly style="display: none;" name="bid" id="" value="<%=board._id%>">
-        <input readonly style="display: none;" type="text" name="id" value="<%=person._id%>">
+        <input readonly style="display: none;" type="text" name="tid" value="<%=team._id%>">
       
       <input type="text" name="background" id="background" class="form-control" placeholder="Link of Image">
       <div role="separator" class="dropdown-divider"></div>
@@ -195,12 +196,12 @@
         <div class="card text-white bg-secondary mb-3" style="display: inline-block; max-width: 20rem;  white-space: normal;">
            
             <div class="card-body">
-              <h5 class="card-title"><a style="color: white;" href="/list/<%=person._id%>/<%= board._id%>/<%= board.lists[i]._id%>"><%= board.lists[i].title%></h5></a>
+              <h5 class="card-title"><a style="color: white;" href="/teamList/<%=person._id%>/<%=team._id%>/<%= board._id%>/<%= board.lists[i]._id%>"><%= board.lists[i].title%></h5></a>
 
                 <div class="cards">
                   <% for(j=0;j<board.lists[i].cards.length;j++){ %>
 
-                    <a href="/card/<%=person._id%>/<%=board._id%>/<%=board.lists[i]._id%>/<%=board.lists[i].cards[j]._id%>">
+                    <a href="/teamCard/<%=  person._id%>/<%=team._id%>/<%=board._id%>/<%=board.lists[i]._id%>/<%=board.lists[i].cards[j]._id%>">
                     <div class="card mt-2" style="width: 17rem; color:black">
                         <div class="card-body">
                           <!-- <p class="card-text" ><%= board.lists[i].cards[j]._id %>.</p> -->
@@ -218,8 +219,9 @@
 
                 <div class="card mt-2" style="width: 17rem; color:black">
                     <div class="card-body">
-                      <form action="/cards" method="POST">
-                        <input readonly style="display: none;"  type="text" name="id" id="id" value="<%= person._id %>">
+                      <form action="/teamCards" method="POST">
+                        <input type="text" name="id" id="id" value="<%= person._id%>">
+                        <input readonly style="display: none;"  type="text" name="tid" id="tid" value="<%= team._id %>">
                         <input readonly style="display: none;"  type="text" name="bid" id="bid" value="<%= board._id%>">
                         <input readonly style="display: none;"  type="text" name="lid" id="lid" value="<%= board.lists[i]._id%>">
                       <input class="form-control" type="text" name="cardTitle" id="cardTitle" placeholder="Enter a title for this card...">
@@ -241,8 +243,9 @@
 
     <div class="card ml-3" style="width: 18rem; display: inline-block;">
         <div class="card-body">
-            <form action="/lists" method="POST">
-              <input readonly style="display: none;"  type="text" name="id" id="id" value="<%= person._id %>">
+            <form action="/teamLists" method="POST">
+                <input type="text" name="id" value="<%=person._id%>">
+              <input readonly style="display: none;"  type="text" name="tid" id="tid" value="<%= team._id %>">
               <input readonly style="display: none;"  type="text" name="bid" id="bid" value="<%= board._id%>">
            <input type="text" class="form-control" name="listTitle" id="listTitle" placeholder="Enter list title">
            <input type="submit" value="Add List" class="btn mt-2 btn-success">

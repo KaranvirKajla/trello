@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Create Team</title>
+  </head>
+  <body>
+      <div class="container">
+    <div class="card bg-dark text-white">
+        <img src="http://getwallpapers.com/wallpaper/full/c/2/5/361578.jpg" class="card-img" alt="...">
+        <div class="card-img-overlay">
+          <h1 class="card-title">Let's Build a Team</h1>
+          <h5>Boost your productivity by making it easier for everyone to access boards in one location.</h5>
+
+
+          <form action="/createTeam" method="POST">
+            <div class="form-group">
+                <input type="text" name="id" id="id" readonly value="<%=person._id%>">
+              <label for="text">Team Name</label>
+              <input type="text" class="form-control" name="name" id="name" >
+              <small id="emailHelp" class="form-text text-muted">This is the name of your company, team or organization.</small>
+            </div>
+            <div class="form-group">
+              <label for="type">Team Type</label>
+              <select class="form-control" name="type" id="type">
+                <option value="education">Education</option>
+                <option value="marketing">Marketing</option>
+                <option value="sales">Sales</option>
+                <option value="engineering">Engineering-IT</option>
+                <option value="projectMangagement">Project Management</option>
+                <option value="Bussiness">Bussiness</option>
+                <option value="others">Others</option>
+              </select>
+            </div>
+            <div class="form-group">
+                <label for="text">Team Description</label><small>  Optional</small>
+                <input type="text" class="form-control" name="description" id="description" >
+             
+              </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+
+
+        </div>
+      </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>

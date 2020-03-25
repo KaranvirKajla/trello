@@ -13,9 +13,10 @@
   </head>
   <body>
     <div class="container">
-        <form action="/card" method="POST">
+        <form action="/teamCard" method="POST">
             <div class="form-group">
                 <input type="text" name="id" id="id" value="<%=pid%>">
+                <input type="text" name="tid" readonly id="tid" value="<%=tid%>">
                 <input type="text" name="bid" id="bid" value="<%=bid%>">
                 <input type="text" name="lid" id="lid" value="<%=lid%>">
                 <input type="text" name="cid" id="cid" value="<%=card._id%>">
@@ -32,19 +33,21 @@
             <button type="submit" class="btn btn-primary">Save</button>
           </form>
 
-          <a href="/b/<%=pid%>/<%=bid%>" type="button" class="btn btn-outline-secondary">Go Back</a>
+          <a href="/tb/<%=pid%>/<%=tid%>/<%=bid%>" type="button" class="btn btn-outline-secondary">Go Back</a>
          
          
-          <form action="/deleteCard" method="POST">
+          <form action="/teamDeleteCard" method="POST">
             <input type="text" readonly name="id" value="<%=pid%>">
+            <input type="text" name="tid" id="" readonly value="<%=tid%>">
             <input type="text" readonly name="bid" value="<%=bid%>">
             <input type="text" readonly name="lid" value="<%=lid%>">
             <input type="text" readonly name="cid" value="<%=card._id%>">
             <input style="float: right;" class="btn btn-danger" type="submit" value="Delete this Card">
           </form>
           <h2>Comments</h2>
-          <form action="/cardComment" method="POST" class="form-horizontal">
+          <form action="/teamCardComment" method="POST" class="form-horizontal">
             <input type="text" name="id"  value="<%=pid%>">
+            <input type="text" name="tid" id="" value="<%=tid%>">
                 <input type="text" name="bid"  value="<%=bid%>">
                 <input type="text" name="lid"  value="<%=lid%>">
             <input type="text" name="cid" value="<%=card._id%>">

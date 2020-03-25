@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
-const PrivateBoard = require("./privateBoard")
-const PublicBoard = require("./publicBoard")
+const Board = require("./board")
 let commentSchema = new mongoose.Schema({
     creator:{
         type:String
