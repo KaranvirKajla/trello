@@ -14,8 +14,14 @@
     <div class="container">
         <div class="container">
 
-       
+         <% if(alert=="true"){%>
+          <div class="alert alert-danger" role="alert">
+            Your Email or password is incorrect... Please check and try again.....
+          </div>
+       <% }%>
         <h1>Trello</h1>
+
+        
         <h2>Login to Trello</h2>
         <form action="/login" method="POST">
             <div class="form-group">

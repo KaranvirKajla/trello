@@ -200,7 +200,7 @@
                         <input readonly style="display: none;"  type="text" name="id" id="id" value="<%= person._id %>">
                         <input readonly style="display: none;"  type="text" name="bid" id="bid" value="<%= board._id%>">
                         <input readonly style="display: none;"  type="text" name="lid" id="lid" value="<%= board.lists[i]._id%>">
-                      <input class="form-control" type="text" name="cardTitle" id="cardTitle" placeholder="Enter a title for this card...">
+                      <input required="required" class="form-control" type="text" name="cardTitle" id="cardTitle" placeholder="Enter a title for this card...">
                       <input type="submit"class="btn btn-primary mt-2" value="Add Card">
                     </form>
                     </div>
@@ -222,7 +222,7 @@
             <form action="/lists" method="POST">
               <input readonly style="display: none;"  type="text" name="id" id="id" value="<%= person._id %>">
               <input readonly style="display: none;"  type="text" name="bid" id="bid" value="<%= board._id%>">
-           <input type="text" class="form-control" name="listTitle" id="listTitle" placeholder="Enter list title">
+           <input required='required' type="text" class="form-control" name="listTitle" id="listTitle" placeholder="Enter list title">
            <input type="submit" value="Add List" class="btn mt-2 btn-success">
           
         </form>

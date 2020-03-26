@@ -15,10 +15,11 @@ app.use(bodyParser.json());
 
 let myLogger = function(req,res,next){
     let id = req.params.id;
+    console.log("myloggermyloggermyloggermyloggermyloggermyloggermyloggermyloggermylogger")
     Person.findOne({_id:id},function(err,found){
         if(err){console.log(err)}else{
             if(found.login==true){next();}else{
-                res.redirect("/signUp");
+                res.redirect("/login/false");
             }
         }
     })
@@ -68,8 +69,9 @@ app.post("/signUp2",function(req,res){
         }
     })
 })
-app.get("/login",function(req,res){
-    res.render("login.ejs")
+app.get("/login/:alert",function(req,res){
+    let alert = req.params.alert;
+    res.render("login.ejs",{alert:alert})
 })
 app.post("/login",function (req,res) {
    // console.log("loginloginloginloginloginloginloginloginloginlogin",req.body)
@@ -78,6 +80,9 @@ app.post("/login",function (req,res) {
     Person.findOneAndUpdate({email:email},{login:true},function(err,found){
         if(err){console.log(data);}else{
             console.log("loginloginloginloginloginloginloginloginloginloginloginloginlogin",found);
+            if(found===null || password!=found.password){
+                res.redirect("/login/true")
+            }else
             res.redirect("/home/"+found._id)
         }
     })
@@ -98,7 +103,7 @@ app.get("/logout/:id",function(req,res){
     console.log("logoutlogoutlogoutlogoutlogoutlogoutlogoutlogoutlogoutlogoutlogoutlogoutlogoutlogoutlogoutlogout",id);
     Person.findOneAndUpdate({_id:id},{login:false},function(err,data){
         if(err){console.log(err)}else{
-            res.redirect("/login");
+            res.redirect("/login/false");
         }
     })
 })
@@ -106,7 +111,7 @@ app.get("/logout/:id",function(req,res){
 
 
 
-app.get("/home/:id",function(req,res){
+app.get("/home/:id",myLogger,function(req,res){
     let id = req.params.id;
     Person.findOne({_id:id}).populate("boards").populate({path:"teams",populate:{path:"boards"}}).exec(function(err,found){
         if(err){console.log(err)}else{
@@ -116,7 +121,7 @@ app.get("/home/:id",function(req,res){
     })
 
 })
-app.get("/createBoard/:id",function(req,res){
+app.get("/createBoard/:id",myLogger,function(req,res){
     let id = req.params.id;
     Person.findOne({_id:id}).populate("teams").exec(function(err,found){
         if(err){console.log(err)}else{
@@ -177,7 +182,7 @@ app.post("/createBoard",function(req,res){
     }
 
 })
-app.get("/c/:id/:bid/:lid/:cid",function(req,res){
+app.get("/c/:id/:bid/:lid/:cid",myLogger,function(req,res){
     let id = req.params.id;
     let bid = req.params.bid;
     let lid = req.params.lid;
@@ -205,7 +210,7 @@ app.get("/c/:id/:bid/:lid/:cid",function(req,res){
     })
 
 })
-app.get("/l/:id/:bid/:lid",function(req,res){
+app.get("/l/:id/:bid/:lid",myLogger,function(req,res){
     let id = req.params.id;
     let bid = req.params.bid;
     let lid = req.params.lid;
@@ -231,7 +236,7 @@ app.get("/l/:id/:bid/:lid",function(req,res){
     })
 
 })
-app.get("/b/:id/:bid",function(req,res){
+app.get("/b/:id/:bid",myLogger,function(req,res){
     let id = req.params.id;
     let bid = req.params.bid;
    // console.log("/b/:id/:bid/b/:id/:bid/b/:id/:bid/b/:id/:bid/b/:id/:bid/b/:id/:bid/b/:id/:bid/b/:id/:bid/b/:id/:bid/b/:id/:bid/b/:id/:bid/b/:id/:bid/b/:id/:bid",bid)
@@ -305,7 +310,7 @@ console.log("cardscardscardscardscardscardscardscardscardscardscardscardscardsca
         }
     })
 })
-app.get("/card/:id/:bid/:lid/:cid",function(req,res){
+app.get("/card/:id/:bid/:lid/:cid",myLogger,function(req,res){
     let id = req.params.id;
     let bid = req.params.bid;
     let lid = req.params.lid;
@@ -388,7 +393,7 @@ app.post("/background",function(req,res){
         }
     })
 })
-app.get("/boardDetails/:id/:bid",function(req,res){
+app.get("/boardDetails/:id/:bid",myLogger,function(req,res){
     let id = req.params.id;
     let bid = req.params.bid;
     Person.findOne({_id:id},function(err,found){
@@ -425,7 +430,7 @@ app.post("/boardDetails",function(req,res){
 
 
 
-app.get("/createTeam/:id",function(req,res){
+app.get("/createTeam/:id",myLogger,function(req,res){
     let id = req.params.id;
     Person.findOne({_id:id},function(err,found){
         if(err){console.log(err);}else{
@@ -466,7 +471,7 @@ app.post("/createTeam",function(req,res){
     
 })
 
-app.get("/homeBoard/:id/:tid",function(req,res){
+app.get("/homeBoard/:id/:tid",myLogger,function(req,res){
     let id = req.params.id;
     let tid = req.params.tid;
     Person.findOne({_id:id}).populate("boards").exec(function(err,found){
@@ -483,7 +488,7 @@ app.get("/homeBoard/:id/:tid",function(req,res){
   
     
 })
-app.get("/list/:id/:bid/:lid",function(req,res){
+app.get("/list/:id/:bid/:lid",myLogger,function(req,res){
     let lid = req.params.lid;
     let id = req.params.id;
     let bid = req.params.bid;
@@ -581,7 +586,7 @@ app.post("/deleteList",function(req,res){
 
 })
 
-app.get("/tb/:id/:tid/:bid",function(req,res){
+app.get("/tb/:id/:tid/:bid",myLogger,function(req,res){
     let id = req.params.id;
     let tid = req.params.tid;
     let bid = req.params.bid;
@@ -613,7 +618,7 @@ app.get("/tb/:id/:tid/:bid",function(req,res){
 
 
 
-app.get("/tc/:id/:tid/:bid/:lid/:cid",function(req,res){
+app.get("/tc/:id/:tid/:bid/:lid/:cid",myLogger,function(req,res){
     let id = req.params.id;
     let tid = req.params.tid;
     let bid = req.params.bid;
@@ -644,7 +649,7 @@ app.get("/tc/:id/:tid/:bid/:lid/:cid",function(req,res){
     })
 
 })
-app.get("/tl/:id/:tid/:bid/:lid",function(req,res){
+app.get("/tl/:id/:tid/:bid/:lid",myLogger,function(req,res){
     let id = req.params.id;
     let tid = req.params.tid;
     let bid = req.params.bid;
@@ -705,7 +710,7 @@ app.post("/teamLists",function(req,res){
     })
 
 })
-app.get("/tc/:id/:tid/:bid/:lid/:cid",function(req,res){
+app.get("/tc/:id/:tid/:bid/:lid/:cid",myLogger,function(req,res){
     let id = req.params.id;
     let tid = req.params.tid;
     let bid = req.params.bid;
@@ -764,7 +769,7 @@ console.log("cardscardscardscardscardscardscardscardscardscardscardscardscardsca
 })
 
 
-app.get("/teamBoardDetails/:id/:tid/:bid",function(req,res){
+app.get("/teamBoardDetails/:id/:tid/:bid",myLogger,function(req,res){
     let id = req.params.id;
     let tid = req.params.tid;
     let bid = req.params.bid;
@@ -815,7 +820,7 @@ app.post("/teamBackground",function(req,res){
 })
 
 
-app.get("/teamCard/:id/:tid/:bid/:lid/:cid",function(req,res){
+app.get("/teamCard/:id/:tid/:bid/:lid/:cid",myLogger,function(req,res){
     let id = req.params.id;
     let tid = req.params.tid;
     let bid = req.params.bid;
@@ -975,7 +980,7 @@ app.post("/teamCardComment",function(req,res){
 
 
 
-app.get("/homeMember/:id/:tid",function(req,res){
+app.get("/homeMember/:id/:tid",myLogger,function(req,res){
     let id = req.params.id;
     let tid = req.params.tid;
     Person.findOne({_id:id}).populate("boards").exec(function(err,found){
@@ -992,7 +997,7 @@ app.get("/homeMember/:id/:tid",function(req,res){
 })
 
 
-app.get("/teamDetails/:id/:tid",function(req,res){
+app.get("/teamDetails/:id/:tid",myLogger,function(req,res){
     let id = req.params.id;
     let tid = req.params.tid;
     Team.findOne({_id:tid},function(err,foundTeam){
@@ -1017,7 +1022,7 @@ app.post("/teamDetails",function(req,res){
     
 })
 
-app.get("/addMember/:id/:tid",function(req,res){
+app.get("/addMember/:id/:tid",myLogger,function(req,res){
     let tid = req.params.tid;
     let id = req.params.id;
     Person.find({},function(err,found){
@@ -1037,7 +1042,7 @@ app.get("/addMember/:id/:tid",function(req,res){
     })
     
 })
-app.get("/addedMember/:id/:tid/:amid",function(req,res){
+app.get("/addedMember/:id/:tid/:amid",myLogger,function(req,res){
     let id = req.params.id;
     let tid = req.params.tid;
     let amid = req.params.amid;

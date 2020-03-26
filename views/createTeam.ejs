@@ -10,24 +10,26 @@
 
     <title>Create Team</title>
   </head>
-  <body>
+  <body style="background-image: url(https://images.wallpaperscraft.com/image/chess_board_glass_black_white_surface_15259_1920x1080.jpg);">
       <div class="container">
-    <div class="card bg-dark text-white">
-        <img src="http://getwallpapers.com/wallpaper/full/c/2/5/361578.jpg" class="card-img" alt="...">
-        <div class="card-img-overlay">
+
+   
+        <!-- <img src="http://getwallpapers.com/wallpaper/full/c/2/5/361578.jpg" class="card-img" alt="...">
+        <div class="card-img-overlay"> -->
+          <div style="color: white;">
           <h1 class="card-title">Let's Build a Team</h1>
           <h5>Boost your productivity by making it easier for everyone to access boards in one location.</h5>
-
+        </div>
 
           <form action="/createTeam" method="POST">
             <div class="form-group">
-                <input type="text" name="id" id="id" readonly value="<%=person._id%>">
-              <label for="text">Team Name</label>
+                <input required="required" style="display:none" type="text" name="id" id="id" readonly value="<%=person._id%>">
+              <label style="color: white;" for="text">Team Name</label>
               <input type="text" class="form-control" name="name" id="name" >
-              <small id="emailHelp" class="form-text text-muted">This is the name of your company, team or organization.</small>
+              <small style="color: white;">This is the name of your company, team or organization.</small>
             </div>
             <div class="form-group">
-              <label for="type">Team Type</label>
+              <label style="color: white;" for="type">Team Type</label>
               <select class="form-control" name="type" id="type">
                 <option value="education">Education</option>
                 <option value="marketing">Marketing</option>
@@ -39,7 +41,7 @@
               </select>
             </div>
             <div class="form-group">
-                <label for="text">Team Description</label><small>  Optional</small>
+                <label style="color: white;" for="text">Team Description</label><small>  Optional</small>
                 <input type="text" class="form-control" name="description" id="description" >
              
               </div>
@@ -47,9 +49,9 @@
           </form>
 
 
-        </div>
+       
       </div>
-    </div>
+    
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
