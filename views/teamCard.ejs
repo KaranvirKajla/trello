@@ -15,11 +15,11 @@
     <div class="container">
         <form action="/teamCard" method="POST">
             <div class="form-group">
-                <input type="text" name="id" id="id" value="<%=pid%>">
-                <input type="text" name="tid" readonly id="tid" value="<%=tid%>">
-                <input type="text" name="bid" id="bid" value="<%=bid%>">
-                <input type="text" name="lid" id="lid" value="<%=lid%>">
-                <input type="text" name="cid" id="cid" value="<%=card._id%>">
+                <input style="display: none;" type="text" name="id" id="id" value="<%=pid%>">
+                <input style="display: none;" type="text" name="tid" readonly id="tid" value="<%=tid%>">
+                <input style="display: none;" type="text" name="bid" id="bid" value="<%=bid%>">
+                <input style="display: none;" type="text" name="lid" id="lid" value="<%=lid%>">
+                <input style="display: none;" type="text" name="cid" id="cid" value="<%=card._id%>">
               <label for="title">Card Title</label>
               <input type="text" name="title" class="form-control" id="title" value="<%=card.title%>">
              
@@ -37,20 +37,20 @@
          
          
           <form action="/teamDeleteCard" method="POST">
-            <input type="text" readonly name="id" value="<%=pid%>">
-            <input type="text" name="tid" id="" readonly value="<%=tid%>">
-            <input type="text" readonly name="bid" value="<%=bid%>">
-            <input type="text" readonly name="lid" value="<%=lid%>">
-            <input type="text" readonly name="cid" value="<%=card._id%>">
+            <input style="display: none;" type="text" readonly name="id" value="<%=pid%>">
+            <input style="display: none;" type="text" name="tid" id="" readonly value="<%=tid%>">
+            <input style="display: none;" type="text" readonly name="bid" value="<%=bid%>">
+            <input style="display: none;" type="text" readonly name="lid" value="<%=lid%>">
+            <input style="display: none;" type="text" readonly name="cid" value="<%=card._id%>">
             <input style="float: right;" class="btn btn-danger" type="submit" value="Delete this Card">
           </form>
           <h2>Comments</h2>
           <form action="/teamCardComment" method="POST" class="form-horizontal">
-            <input type="text" name="id"  value="<%=pid%>">
-            <input type="text" name="tid" id="" value="<%=tid%>">
-                <input type="text" name="bid"  value="<%=bid%>">
-                <input type="text" name="lid"  value="<%=lid%>">
-            <input type="text" name="cid" value="<%=card._id%>">
+            <input style="display: none;" type="text" name="id"  value="<%=pid%>">
+            <input style="display: none;" type="text" name="tid" id="" value="<%=tid%>">
+                <input style="display: none;" type="text" name="bid"  value="<%=bid%>">
+                <input style="display: none;" type="text" name="lid"  value="<%=lid%>">
+            <input style="display: none;" type="text" name="cid" value="<%=card._id%>">
             <div class="form-group">
                 
                 <label for="comment" class="control-label col-sm-2"><i class="fa fa-user" aria-hidden="true"></i></label>

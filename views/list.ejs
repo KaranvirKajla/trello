@@ -15,11 +15,11 @@
     <form method="POST" action="/list">
 
         <div class="form-group">
-            <input type="text" readonly name="id" value="<%=id%>">
-            <input type="text" readonly name="bid" value="<%=bid%>">
-            <input type="text" readonly name="lid" value="<%=list._id%>">
+            <input style="display: none;" type="text" readonly name="id" value="<%=id%>">
+            <input style="display: none;" type="text" readonly name="bid" value="<%=bid%>">
+            <input style="display: none;" type="text" readonly name="lid" value="<%=list._id%>">
           <label for="title">List Title</label>
-          <input type="text" name="title" class="form-control" id="title" value="<%=list.title%>" >
+          <input required="required" type="text" name="title" class="form-control" id="title" value="<%=list.title%>" >
        
         </div>
       
@@ -27,9 +27,9 @@
       </form>
 
       <form action="/deleteList" method="POST">
-        <input type="text" readonly name="id" value="<%=id%>">
-        <input type="text" readonly name="bid" value="<%=bid%>">
-        <input type="text" readonly name="lid" value="<%=list._id%>">
+        <input style="display: none;" type="text" readonly name="id" value="<%=id%>">
+        <input style="display: none;" type="text" readonly name="bid" value="<%=bid%>">
+        <input style="display: none;" type="text" readonly name="lid" value="<%=list._id%>">
         <button type="submit" class="btn btn-danger ">Delete List</button>
     </form>
     </div>

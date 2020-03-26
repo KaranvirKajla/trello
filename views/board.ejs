@@ -146,6 +146,43 @@
     <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Change Background</button>
     <div class="dropdown-menu">
 
+      <div class="dropdown-item">
+        <form action="/background" method="POST" class="form-group">
+          <input type="text" readonly style="display: none;" name="bid" id="" value="<%=board._id%>">
+          <input readonly style="display: none;" type="text" name="id" value="<%=person._id%>">
+        
+        <input style="display: none;" readonly type="text" name="background"  class="form-control" placeholder="Link of Image" value="https://wallpapercave.com/wp/wp2812070.jpg">
+      
+       <input type="submit" value="Blue" class="btn btn-light btn-block btn-lg">
+      </form>
+      </div>
+
+      <div class="dropdown-item">
+        <form action="/background" method="POST" class="form-group">
+          <input style="display: none;" type="text" readonly style="display: none;" name="bid" id="" value="<%=board._id%>">
+          <input readonly style="display: none;" type="text" name="id" value="<%=person._id%>">
+        
+        <input style="display: none;" readonly type="text" name="background" class="form-control" placeholder="Link of Image" value="https://wallpapercave.com/wp/wp2812089.jpg">
+      
+       <input type="submit" value="Violet" class="btn btn-light btn-lg btn-block">
+      </form>
+      </div>
+
+      <div class="dropdown-item">
+        <form action="/background" method="POST" class="form-group">
+          <input type="text" readonly style="display: none;" name="bid" id="" value="<%=board._id%>">
+          <input readonly style="display: none;" type="text" name="id" value="<%=person._id%>">
+        
+        <input style="display: none;" readonly type="text" name="background" id="background" class="form-control" placeholder="Link of Image" value="https://wallpapercave.com/wp/wp2812267.jpg">
+      
+       <input type="submit" value="Drops" class="btn btn-light btn-lg btn-block">
+      </form>
+      </div>
+
+
+
+
+<div class="dropdown-item">
       <form action="/background" method="POST" class="form-group">
         <input type="text" readonly style="display: none;" name="bid" id="" value="<%=board._id%>">
         <input readonly style="display: none;" type="text" name="id" value="<%=person._id%>">
@@ -154,7 +191,7 @@
       <div role="separator" class="dropdown-divider"></div>
      <input type="submit" value="Save" class="btn btn-secondary">
     </form>
-
+  </div>
     </div>
   </div>
  

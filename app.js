@@ -382,6 +382,9 @@ app.post("/cardComment",function(req,res){
 
 })
 
+
+
+
 app.post("/background",function(req,res){
     let id = req.body.id;
     let bid = req.body.bid;
@@ -680,6 +683,20 @@ app.get("/tl/:id/:tid/:bid/:lid",myLogger,function(req,res){
         }
     })
 
+})
+
+app.get("/teamList/:id/:tid/:bid/:lid",myLogger,function(req,res){
+    let lid = req.params.lid;
+    let tid = req.params.tid;
+    let id = req.params.id;
+    let bid = req.params.bid;
+
+    List.findOne({_id:lid},function(err,foundList){
+        if(err){console.log(err);}else{
+            res.render("teamList.ejs",{list:foundList,id:id,bid:bid,tid:tid});
+        }
+    })
+   
 })
 
 app.post("/teamLists",function(req,res){
