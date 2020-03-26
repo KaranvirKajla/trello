@@ -16,6 +16,7 @@ let teamSchema = new mongoose.Schema({
    },
    discription:{
        type:String,
+       default:""
    },
    members:[{
        type:mongoose.Schema.Types.ObjectId,

@@ -8,7 +8,8 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>Home, Board!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -19,28 +20,13 @@
     
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img src="https://cdn4.iconfinder.com/data/icons/wirecons-free-vector-icons/32/menu-alt-512.png" height="30px" width="25px" alt="">
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                  </li>
-               
-              </li>
+           
             <li class="nav-item active">
               <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
-              <button class="btn btn-primary">Boards</button>
-            </li>
+           
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="btn btn-primary" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Boards
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -52,9 +38,7 @@
                 <%}%>
               </div>
             </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li>
+         
           </ul>
           <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -85,15 +69,27 @@
               </li>
               
             </li>
-            <li>
-              <img src="https://www.thesslstore.com/blog/wp-content/uploads/2017/05/circle-with-i-1.png" alt="" width="40px" height="40px">
-            </li>
-            <li>
-              <img src="https://www.dlf.pt/png/big/29/298991_bell-icon-png.png" alt="" width="40px" height="40px">
-            </li>
-            <li>
-              <img src="https://www.dlf.pt/png/big/29/298991_bell-icon-png.png" alt="" width="40px" height="40px">
-            </li>
+          
+           
+          <li>
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i  class="fa fa-user fa-3x" aria-hidden="true"></i>
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <h6 class="dropdown-header"><%= person.name%> ( <%=person.email%> )</h6>
+                <div class="dropdown-divider"></div>
+            
+
+
+
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">Help</a>
+<a class="dropdown-item" href="/logout/<%=person._id%>">Logout</a>
+              </div>
+            </div>
+           
+          </li>
           </ul>
         </div>
       </nav>
@@ -112,7 +108,7 @@
        
           <hr class="my-4">
     
-          <a class="btn btn-primary btn-lg" href="#" role="button">Edit Team Profile</a>
+          <a class="btn btn-primary btn-lg" href="/teamDetails/<%= person._id%>/<%= team._id%>" role="button">Edit Team Profile</a>
         </div>
       </div>
         
@@ -143,6 +139,7 @@
     
         <div id="cards">
 <% for(i=team.boards.length-1;i>=0;i--){%>
+<a href="/tb/<%=person._id%>/<%=team._id%>/<%=team.boards[i]._id%>">
         <div class="card" style="width: 18rem;">
  <img src="https://hips.hearstapps.com/ghk.h-cdn.co/assets/15/33/2048x1024/landscape-1439490128-plants.jpg?resize=980:*" alt="" height="70px">
           <div class="card-img-overlay card-body">
@@ -150,6 +147,7 @@
            
           </div>
         </div>
+      </a>
       <% } %>
       </div>
 <a href="/createBoard/<%=person._id%>">

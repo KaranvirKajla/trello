@@ -13,8 +13,8 @@
   <body>
       <div class="container">
     <form action="/boardDetails" method="POST">
-        <input type="text" name="id" id="id" readonly value="<%=person._id%>">
-        <input type="text" name="bid" id="bid" readonly value="<%=board._id%>">
+        <input style="display: none;" type="text" name="id" id="id" readonly value="<%=person._id%>">
+        <input style="display: none;" type="text" name="bid" id="bid" readonly value="<%=board._id%>">
         <div class="form-group row">
           <label for="name" class="col-sm-2 col-form-label">Board Name</label>
           <div class="col-sm-10">

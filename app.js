@@ -992,8 +992,79 @@ app.get("/homeMember/:id/:tid",function(req,res){
 })
 
 
+app.get("/teamDetails/:id/:tid",function(req,res){
+    let id = req.params.id;
+    let tid = req.params.tid;
+    Team.findOne({_id:tid},function(err,foundTeam){
+        if(err){console.log(err);}else{
+            res.render("teamDetails.ejs",{pid:id,team:foundTeam});
+        }
+    })
+   
+})
 
+app.post("/teamDetails",function(req,res){
+    let id = req.body.id;
+    let tid = req.body.tid;
+    let name= req.body.name;
+    let type = req.body.type;
+    let description= req.body.description;
+    Team.findOneAndUpdate({_id:tid},{name:name,description:description},function(err,data){
+        if(err){console.log(err);}else{
+            res.redirect("/teamDetails/"+id+"/"+tid)
+        }
+    })
+    
+})
 
+app.get("/addMember/:id/:tid",function(req,res){
+    let tid = req.params.tid;
+    let id = req.params.id;
+    Person.find({},function(err,found){
+        if(err){console.log(err)}else{
+            Team.findOne({_id:tid}).exec(function(err,foundTeam){
+                let filterPersons = found.filter(function(item){
+                    return foundTeam.members.indexOf(item._id)===-1;
+                })
+
+                console.log("addMemberaddMemberaddMemberaddMemberaddMemberaddMemberaddMemberaddMemberaddMemberaddMemberaddMemberaddMemberaddMemberaddMemberaddMemberaddMember",filterPersons)
+                res.render("addMember.ejs",{pid:id,persons:filterPersons,tid:tid})
+
+            })
+
+       
+    }
+    })
+    
+})
+app.get("/addedMember/:id/:tid/:amid",function(req,res){
+    let id = req.params.id;
+    let tid = req.params.tid;
+    let amid = req.params.amid;
+    Team.findOne({_id:tid},function(err,foundTeam){
+        if(err){console.log(err);}else{
+            foundTeam.members.push(amid);
+            foundTeam.save(function(err,data){
+                if(err){console.log(err);}else{
+
+                    Person.findOne({_id:amid},function(err,foundPerson){
+                        if(err){console.log(err);}else{
+                            foundPerson.teams.push(tid);
+                            foundPerson.save(function(err,dd){
+                                if(err){console.log(err);}else{
+                                    console.log(data);
+                                }
+                            })
+                        }
+                    })
+                    console.log(data);
+                    res.redirect("/homeMember/"+id+"/"+tid);
+                }
+            })
+            
+        }
+    })
+})
 
 
 

@@ -112,7 +112,7 @@
        
           <hr class="my-4">
     
-          <a class="btn btn-primary btn-lg" href="#" role="button">Edit Team Profile</a>
+          <a class="btn btn-primary btn-lg" href="/teamDetails/<%= person._id%>/<%= team._id%>" role="button">Edit Team Profile</a>
         </div>
       </div>
         
@@ -138,7 +138,7 @@
       </ul>
 
 
-      <button type="button" class="btn btn-primary btn-lg btn-block">Add a Team Member</button>
+      <a href="/addMember/<%=person._id%>/<%= team._id%>" type="button" class="btn btn-primary btn-lg btn-block">Add a Team Member</a>
 
 
       <div id="members">
